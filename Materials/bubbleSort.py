@@ -1,10 +1,15 @@
-arr = [1, 20, 5, 8, 54, 98, 20, 6, 10, 14, 60]
+arr = [0, 5, 10, 7, 6, 8, 15, 12]
 
-def bubbleSort():
-    for i in range(len(arr)):
-        for j in range(len(arr) -1):
-            if (arr[j] > arr[j +1]):
-                arr[j], arr[j +1] = arr[j +1], arr[j]
+def binarySort():
+    for x in range(len(arr)):
+        swapped = False
+        for y in range(len(arr) -1):
+            if (arr[y] > arr[y+1]):
+                arr[y], arr[y+1] = arr[y+1], arr[y]
+                swapped = True
+        if swapped == False:
+            break
 
-bubbleSort()
+binarySort()
+
 print(arr)
