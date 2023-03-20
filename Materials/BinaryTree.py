@@ -4,20 +4,16 @@ class TreeNode:
         self.LeftPointer = None
         self.RightPointer = None
 
-
 RootPointer = 0
 FreePointer = 0
 size = 10
 
-
 def Initialise():
     global TreeList, RootPointer, FreePointer
-
     RootPointer = None
     FreePointer = 0
 
     TreeList = [TreeNode() for i in range(size)]
-
     for i in range(size - 1):
         TreeList[i].LeftPointer = i + 1
 
@@ -28,24 +24,20 @@ def AddNode(item):
     global TreeList, RootPointer, FreePointer
 
     #if there is space
-    
     if FreePointer is not None:
 
         #insert Node
-        
         NewNodePointer = FreePointer
         FreePointer = TreeList[FreePointer].LeftPointer
         TreeList[NewNodePointer].Data = item
         TreeList[NewNodePointer].LeftPointer = None #it is the last node
         TreeList[NewNodePointer].RightPointer = None #so RP and LP should be Null
 
-        #if first node
-        
+        #if first node  
         if RootPointer == None:
             RootPointer = NewNodePointer
 
         #find insertion point
-            
         else:
             ThisPointer = RootPointer
             PrevPointer = None
@@ -60,8 +52,7 @@ def AddNode(item):
                     TurnedLeft = False
                     ThisPointer = TreeList[ThisPointer].RightPointer
 
-            #jaa insert garyo tyasko pointer value change garne
-                    
+            #jaa insert garyo tyasko pointer value change garne    
             if TurnedLeft:
                 TreeList[PrevPointer].LeftPointer = NewNodePointer
             else:
@@ -72,20 +63,15 @@ def Display():
     global TreeList, RootPointer, FreePointer
 
     for i in range(size):
-        print(f"{i} || {TreeList[i].LeftPointer} || {TreeList[i].Data} || {TreeList[i].RightPointer}")
+        print(f"Index: {i} | Left Pointer: {TreeList[i].LeftPointer} | Data: {TreeList[i].Data} | Right Pointer: {TreeList[i].RightPointer}")
 
 
 def FindNode(item):
-    
     #start at the Root Pointer
-    
     ThisPointer = RootPointer
 
     while ThisPointer is not None and TreeList[ThisPointer].Data != item:
-
         #check left or Right
-
-        
         if item < TreeList[ThisPointer].Data:
             ThisPointer = TreeList[ThisPointer].LeftPointer
         else:
@@ -93,31 +79,39 @@ def FindNode(item):
 
     return ThisPointer
 
+traversedOrder = []
 def TraverseInOrder(TreeList, RootPointer):
     if TreeList[RootPointer].LeftPointer != None:
         TraverseInOrder(TreeList, TreeList[RootPointer].LeftPointer)
-    print(str(TreeList[RootPointer].Data))
+
+    # append to the array
+    traversedOrder.append(str(TreeList[RootPointer].Data))
+
     if TreeList[RootPointer].RightPointer != None:
         TraverseInOrder(TreeList,TreeList[RootPointer].RightPointer)
-
-            
-
-
     
 Initialise()
-Display()
 
+print("# tree structure before ordering \n")
+Display()
+print("=============================== \n")
+
+# adding nodes
 AddNode('B')
 AddNode('A')
 AddNode('D')
 AddNode('C')
 
-print()
-
+print('# tree structure after ordering \n')
 Display()
 
-print()
+print("=============================== \n")
 
-print(FindNode('D'))
+print("# index of the searched node value // FindNode('D')")
+print(f"=> {FindNode('D')}")
 
+print("=============================== \n")
+
+print('# binary tree traversal ')
 TraverseInOrder(TreeList, RootPointer)
+print(traversedOrder)

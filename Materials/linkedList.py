@@ -50,8 +50,6 @@ class LinkedList:
             print(f"Index: {i} | Data: {l1.container[i].data}  | Pointer: {l1.container[i].pointer}")
             i = self.container[i].pointer
  
- 
- 
 # driver code
 n = 10
 l1 = LinkedList(n)

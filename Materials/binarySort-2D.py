@@ -1,17 +1,17 @@
-# import random
+import random
 
-# arr = [[random.randint(0,100) for i in range(0,2)] for y in range(0, 10)]
+arr = [[random.randint(0,100) for i in range(0,2)] for y in range(0, 10)]
+print(arr)
 
-# print(arr)
+for x in range(len(arr)):
+    for y in range(len(arr) -1):
+        for z in range(len(arr) - y-1):
+            if (arr[x][z] > arr[x][z+1]):
+                arr[x][z], arr[x][z+1] = arr[x][z+1], arr[x][z]
 
-# for x in range(len(arr)):
-#     for y in range(len(arr) -1):
-#         for z in range(len(arr) - y-1):
-#             if (arr[x][z] > arr[x][z+1]):
-#                 arr[x][z], arr[x][z+1] = arr[x][z+1], arr[x][z]
+print(arr)
 
-# print(arr)
-
+# =====================================
 
 array = [
   [12, 18], 
